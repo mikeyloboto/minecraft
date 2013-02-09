@@ -1,0 +1,19 @@
+[
+{
+"modid": "gemsMod",
+"name": "Collectible Rare Gems",
+"description": "New rare gems for the best miners",
+"version": "1.0",
+"credits": "Code: Mikey_Loboto, artwork: Gizr_Padukovich",
+"logoFile": "",
+"mcversion": "1.4.5",
+"url": "",
+"updateUrl": "",
+"authors": [ "Mikey_Loboto", "Gizr_Padukovich" ],
+"parent":"",
+"screenshots": [],
+"dependencies": [
+
+]
+}
+]
