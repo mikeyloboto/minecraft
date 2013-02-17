@@ -38,9 +38,9 @@ public class GuiAnalyzer extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 		fontRenderer.drawString("Analyzer", 8, 6, 4210752);
-		System.out.println("Test - " + analyzerInventory.CanRedraw); 
+		System.out.println("Test - " + this.analyzerInventory.res.readiness); 
 		//if (this.analyzerInventory.CanRedraw==true)
-			redrawNames(this.analyzerInventory.Els[0], this.analyzerInventory.Els[1], this.analyzerInventory.Els[2], this.analyzerInventory.Els[3]);
+			redrawNames(this.analyzerInventory.res.res1, this.analyzerInventory.res.res2, this.analyzerInventory.res.res3, this.analyzerInventory.res.res4);
 		//else
 			//redrawNames(0, 0, 0, 0);
 		fontRenderer.drawString(

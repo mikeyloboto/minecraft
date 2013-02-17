@@ -1,6 +1,7 @@
 package advancedChemistry.common.tileentity;
 
 import advancedChemistry.common.AdvancedChemistry;
+import advancedChemistry.common.additionalData.AnalyzerResultStore;
 import advancedChemistry.common.blocks.BlockAnalyzer;
 import advancedChemistry.common.gui.GuiAnalyzer;
 import advancedChemistry.common.recipes.RecipesAnalyzer;
@@ -14,9 +15,8 @@ import net.minecraft.tileentity.TileEntity;
 public class TileAnalyzer extends TileEntity implements IInventory {
 
 	public ItemStack[] inv;
-	public boolean CanRedraw;
-	public int Els[] = new int[4];
-
+	public AnalyzerResultStore res = new AnalyzerResultStore();
+	
 	public TileAnalyzer() {
 		inv = new ItemStack[1];
 	}
@@ -135,7 +135,7 @@ public class TileAnalyzer extends TileEntity implements IInventory {
 	private void analyzeItem() {
 		ItemStack itm = this.getStackInSlot(0);
 		if (itm != null) {
-			this.CanRedraw = true;
+			this.res.readiness = true;
 			if (itm.getItem() == AdvancedChemistry.bottledChemical
 					|| itm.getItem() == AdvancedChemistry.capsuleChemical
 					|| itm.getItem() == AdvancedChemistry.containerChemical
@@ -143,25 +143,27 @@ public class TileAnalyzer extends TileEntity implements IInventory {
 					|| itm.getItem() == AdvancedChemistry.DustC
 					|| itm.getItem() == AdvancedChemistry.Ingot
 					|| itm.getItem() == AdvancedChemistry.reinforcedContainerChemical) {
-				this.Els[0] = itm.getItemDamage();
-				this.Els[1] = 0;
-				this.Els[2] = 0;
-				this.Els[3] = 0;
+				
+				
+				this.res.res1 = itm.getItemDamage();
+				this.res.res2 = 0;
+				this.res.res3 = 0;
+				this.res.res4 = 0;
 				//System.out.println("Test - " + Els[0]);
 
 			} else {
 				int input = (Integer) itm.itemID;
 				
 				
-				this.Els[0] = RecipesAnalyzer.smelting().getElementResult(input, 1);
-				this.Els[1] = RecipesAnalyzer.smelting().getElementResult(input, 2);
-				this.Els[2] = RecipesAnalyzer.smelting().getElementResult(input, 3);
-				this.Els[3] = RecipesAnalyzer.smelting().getElementResult(input, 4);
+				this.res.res1 = RecipesAnalyzer.smelting().getElementResult(input, 1);
+				this.res.res2 = RecipesAnalyzer.smelting().getElementResult(input, 2);
+				this.res.res3 = RecipesAnalyzer.smelting().getElementResult(input, 3);
+				this.res.res4 = RecipesAnalyzer.smelting().getElementResult(input, 4);
 				//System.out.println("Shed - " + input);
 			}
-			this.CanRedraw = true;
+			this.res.readiness = true;
 		} else
-			this.CanRedraw = false;
-		System.out.println("Shed - " + this.CanRedraw);
+			this.res.readiness = false;
+		System.out.println("Shed - " + this.res.readiness);
 	}
 }
